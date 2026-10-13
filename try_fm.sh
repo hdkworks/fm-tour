@@ -19,7 +19,7 @@ step() {   # step "説明" コマンド...
   echo ""
   echo "──────────────────────────────────────────────"
   echo "▶ $msg"
-  echo "  \$ $*"
+  echo "  \$ ${SHOW:-$*}"
   echo -n "  （Enter で実行）"; read -r _
   "$@" 2>&1 | strip
 }
@@ -43,8 +43,13 @@ step "⑥ スキーマを指定して、画像から JSON を抜き出す" fm re
 step "⑦ トークン数を数える（コンテキストは約8,000トークンが目安）" fm count-tokens "パスキーの仕組みを教えて"
 
 echo ""
-echo "※ ⑧ のモデルの答えは、実行のたびに変わります。間違っていることがあります（それがこのステップの見どころです）。"
-step "⑧ 限界の確認：fm 自身のことを聞くと…（実際の答えに注目）" fm respond --no-stream "macOSのfmコマンドのserveサブコマンドの使い方を教えて"
+echo "※ ⑧ は『モデルが間違えることがある』例です。fm serve というコマンドは本物ですが、"
+echo "   モデルは fm 自身のことを学習していないので、その説明を作り込んでしまうことがあります（幻覚）。"
+echo "   答えは実行のたびに変わります。次の ⑧b で、本物の説明と見比べます。"
+step "⑧ 限界の確認：fm 自身のことを聞くと…（モデルの答えに注目）" fm respond --no-stream "macOSのfmコマンドのserveサブコマンドの使い方を教えて"
+
+real_help() { fm serve --help 2>&1 | strip | grep -v '^[[:space:][:cntrl:]⠀-⣿]*$'; }
+SHOW="fm serve --help" step "⑧b 本物の説明と見比べる（fm serve --help）" real_help
 
 echo ""
 echo "──────────────────────────────────────────────"
