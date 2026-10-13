@@ -1,0 +1,26 @@
+{
+  "additionalProperties" : false,
+  "required" : [
+    "shop",
+    "date",
+    "total"
+  ],
+  "title" : "Receipt",
+  "properties" : {
+    "total" : {
+      "type" : "integer"
+    },
+    "shop" : {
+      "type" : "string"
+    },
+    "date" : {
+      "type" : "string"
+    }
+  },
+  "type" : "object",
+  "x-order" : [
+    "shop",
+    "date",
+    "total"
+  ]
+}
