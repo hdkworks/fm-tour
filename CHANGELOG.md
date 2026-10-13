@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- `tools/record_tour.py`：Terminal.app でツアーを動かし、Enter を自動で送りながらウィンドウを画面収録する補助スクリプト（動画撮影用。画面収録とアクセシビリティの許可が必要）
+
 ## [0.1.0] - 2026-10-14
 
 ### Added
