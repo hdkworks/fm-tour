@@ -14,6 +14,18 @@ fi
 
 strip() { sed 's/\x1b\[[0-9;]*m//g'; }
 
+# 目立つ見出し（白の太字＋赤い帯。黒い背景でも読める）。NO_COLOR を設定すると色を付けない。
+banner() {   # banner "文字（全角のみ）" 幅（半角換算）
+  local text="$1" width="$2" blank
+  blank="$(printf '%*s' "$width" '')"
+  echo ""
+  if [ -n "${NO_COLOR:-}" ]; then
+    echo "$text"
+  else
+    printf '\033[1;97;48;5;196m%s\033[0m\n\033[1;97;48;5;196m  %s  \033[0m\n\033[1;97;48;5;196m%s\033[0m\n' "$blank" "$text" "$blank"
+  fi
+}
+
 step() {   # step "説明" コマンド...
   local msg="$1"; shift
   echo ""
@@ -42,6 +54,7 @@ step "⑥ スキーマを指定して、画像から JSON を抜き出す" fm re
 
 step "⑦ トークン数を数える（コンテキストは約8,000トークンが目安）" fm count-tokens "パスキーの仕組みを教えて"
 
+banner "【幻覚の実験を開始します】" 30
 echo ""
 echo "※ ⑧ は『モデルが間違えることがある』例です。fm serve というコマンドは本物ですが、"
 echo "   モデルは fm 自身のことを学習していないので、その説明を作り込んでしまうことがあります（幻覚）。"
@@ -50,6 +63,7 @@ step "⑧ 限界の確認：fm 自身のことを聞くと…（モデルの答�
 
 real_help() { fm serve --help 2>&1 | strip | grep -v '^[[:space:][:cntrl:]⠀-⣿]*$'; }
 SHOW="fm serve --help" step "⑧b 本物の説明と見比べる（fm serve --help）" real_help
+banner "【幻覚の実験を終わります】" 30
 
 echo ""
 echo "──────────────────────────────────────────────"
