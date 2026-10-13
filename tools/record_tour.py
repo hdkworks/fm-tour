@@ -9,7 +9,7 @@
 import subprocess, sys, time, signal, os, re
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "fm_tour.mov"
-FONT = 26
+FONT = 16
 BOUNDS = (100, 30, 1500, 760)  # 画面（1600x900pt）の中のウィンドウ位置
 PROMPT = "（Enter で実行）"
 READ_PAUSE = 2.6   # 各ステップで、見る人が読むための間（秒）

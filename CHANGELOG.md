@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-10-14
+
+### Added
+- `docs/images/`：実行例のスナップショット4枚（STEP 1〜5、STEP 6、幻覚の実験、STEP 9）。README に掲載
+- README に「動画の撮影（任意）」の節（`tools/record_tour.py` の使い方・必要な許可）
+
+### Changed
+- `tools/record_tour.py` の既定の文字サイズを 16 に変更
+
+### Fixed
+- 誤ってコミットされていた `tools/__pycache__/` を削除し、`.gitignore` に `__pycache__/` と `*.pyc` を追加
+
 ## [0.1.1] - 2026-10-14
 
 ### Added
