@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Changed
+- README に解説動画（YouTube「Tech千一夜」）の URL を追記
+
 ## [0.1.2] - 2026-10-14
 
 ### Added
